@@ -1,7 +1,7 @@
 hk_to_iast = {
     "A": "ā", "I": "ī", "U": "ū", "R": "ṛ", 
     "M": "ṃ", "H": "ḥ", "G": "ṅ","J": "ñ",
-    "T": "ṭ", "D": "ḍ", "N": "ṇ", "n": "n",
+    "T": "ṭ", "D": "ḍ", "N": "ṇ",
     "z": "ś", "S": "ṣ", "L" : "ḻ"
 }
 
@@ -32,6 +32,7 @@ def HarvardKyotoToIAST(hkstring : str) -> str:
             i += 1
 
     return iast_text
+    
 
 if __name__ == "__main__":
     pass

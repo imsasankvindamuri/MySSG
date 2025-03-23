@@ -9,6 +9,7 @@
     - Problem: not a cent to spare.
 - Future Ideas:
     - Custom Styling + Light/Dark Mode Toggling.
+    - Convert from Harvard-Kyoto ASCII to IAST (This is gonna suck to code, I already know it)
 
 ### Short-Term Solution
 - Use GitHub Pages for Hosting and Python's `markdown` to parse.
