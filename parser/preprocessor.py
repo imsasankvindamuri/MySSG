@@ -33,7 +33,10 @@ def preprocessor(filepath : str) -> str:
                 i += 1
                             
             if parse_stack != ["\n"]:
-                preprocessed_stack.append("".join(parse_stack[:-1]) + "<br>")
+                if parse_stack[-1] == "\n":
+                    preprocessed_stack.append("".join(parse_stack[:-1]) + "<br>")
+                else:
+                    preprocessed_stack.append("".join(parse_stack))
             else:
                 preprocessed_stack.append("\n")
         
