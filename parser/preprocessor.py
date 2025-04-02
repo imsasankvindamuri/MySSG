@@ -1,5 +1,14 @@
+#Preprocesses Harvard-Kyoto to IAST before feeding O/P to markdown.markdown()
+#Harvard-Kyoto words recognized by these delimiters:/|
+
 import os
-import parser.transliteration as tr
+from parser.transliteration import harvard_kyoto_to_iast
+
+edge_cases = {
+    "\n" : "\n",
+    "---\n" : "<hr>"
+
+}
 
 def preprocessor(filepath : str) -> str:
 
@@ -28,18 +37,18 @@ def preprocessor(filepath : str) -> str:
                             raise Exception("""Syntax Error: To convert from Harvard-Kyoto to IAST, please enclose designated text in these delimiters: /|. E.g.: /Rbhus|, /vRtra|, etc.""")
                     parse_stack.pop()
                     hk_sanskrit_stack.reverse()
-                    parse_stack.append(tr.HarvardKyotoToIAST("".join(hk_sanskrit_stack)))
+                    parse_stack.append(harvard_kyoto_to_iast("".join(hk_sanskrit_stack)))
                 
                 i += 1
-                            
-            if parse_stack != ["\n"]:
-                if parse_stack[-1] == "\n":
+
+            if "".join(parse_stack) in edge_cases:
+                preprocessed_stack.append(edge_cases["".join(parse_stack)])
+            else:
+                if "".join(parse_stack)[-1] == "\n":
                     preprocessed_stack.append("".join(parse_stack[:-1]) + "<br>")
                 else:
                     preprocessed_stack.append("".join(parse_stack))
-            else:
-                preprocessed_stack.append("\n")
-        
+    
     return "\n".join(preprocessed_stack)
 
 if __name__ == "__main__":

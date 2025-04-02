@@ -1,3 +1,5 @@
+#Simple section of module to convert from Harvard-Kyoto to IAST
+
 hk_to_iast = {
     "A": "ā", "I": "ī", "U": "ū", "R": "ṛ", 
     "M": "ṃ", "H": "ḥ", "G": "ṅ","J": "ñ",
@@ -5,7 +7,7 @@ hk_to_iast = {
     "z": "ś", "S": "ṣ", "L" : "ḻ"
 }
 
-def HarvardKyotoToIAST(hkstring : str) -> str:
+def harvard_kyoto_to_iast(hkstring : str) -> str:
     iast_first_pass = ''
     iast_text = ''
     i = 0
@@ -35,4 +37,4 @@ def HarvardKyotoToIAST(hkstring : str) -> str:
     
 
 if __name__ == "__main__":
-    pass
+    print(harvard_kyoto_to_iast("indrasya nu vIryANi pra vocaM yAni cakAra prathamAni vajrI."))
