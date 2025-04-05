@@ -22,7 +22,7 @@ def harvard_kyoto_to_iast(hkstring : str) -> str:
     i = 0
 
     while i < len(iast_first_pass):
-        if iast_first_pass[i] == "ṛ":
+        if iast_first_pass[i] == "ṛ" and i + 1 < len(iast_first_pass):
             if iast_first_pass[i + 1] == "ṛ":
                 iast_text += "ṝ"
                 i += 2
@@ -37,4 +37,4 @@ def harvard_kyoto_to_iast(hkstring : str) -> str:
     
 
 if __name__ == "__main__":
-    print(harvard_kyoto_to_iast("indrasya nu vIryANi pra vocaM yAni cakAra prathamAni vajrI."))
+    print(harvard_kyoto_to_iast("pitR"))

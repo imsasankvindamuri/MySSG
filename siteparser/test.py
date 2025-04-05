@@ -3,7 +3,7 @@ from typing import *
 from siteparser.siteparseutils import *
 import pathlib
 import os
-from consts import *
+from constants.consts import CURRENT_DIRECTORY, HOME_DIRECTORY, EXPECTED_ENDNODE_CONTENTS
 
 def render_landing():
     """
@@ -26,20 +26,20 @@ def render_end_node(inputpath: pathlib.Path = CURRENT_DIRECTORY, outputpath: pat
             }
     """
     #Initial Error Handling
-    if not os.path.isdir(inputpath):
+    if not inputpath.is_dir():
         raise Exception(f"{inputpath} must be a directory with a name that ends with '__page'")
-    if not f"{inputpath}".endswith("__page"):
+    if not inputpath.as_posix().endswith("__page"):
         raise Exception(f"{inputpath} does not end with '__page'")
-    if not os.listdir(inputpath) == ['mdata.json','display.md']:
-        raise Exception(f"{inputpath} has contents {os.listdir(inputpath)}. It should only have ['mdata.json','display.md']")
+    if not set(os.listdir(inputpath)) == EXPECTED_ENDNODE_CONTENTS:
+        raise Exception(f"{inputpath} has contents {set(os.listdir(inputpath))}. It should only have {EXPECTED_ENDNODE_CONTENTS}")
     
     #Defining some filepaths; Parsing JSON
     metadata_filepath = os.path.join(inputpath , "mdata.json")
     markdown_filepath = os.path.join(inputpath, "display.md")
     mdata_decode = unpack_json(metadata_filepath)
 
-    if mdata_decode.keys() != ['prev','next','parentpage']:
-        raise Exception(f"{metadata_filepath} has data {mdata_decode.keys()}. It should only have ['prev','next','parentpage']")
+    if list(mdata_decode.keys()) != ['prev','next','parentpage']:
+        raise Exception(f"{metadata_filepath} has data {list(mdata_decode.keys())}. It should only have ['prev','next','parentpage']")
     
     pagemaker.mkpage(markdown_filepath, outputpath, mdata_decode)
 
@@ -52,4 +52,4 @@ def render_full_directory(inputpath: pathlib.Path = CURRENT_DIRECTORY,endpath: p
     ...
 
 if __name__ == "__main__":
-    render_end_node("./RV-1.32.1__page")
+    render_end_node(pathlib.Path("./RV-1.32.5__page"))
