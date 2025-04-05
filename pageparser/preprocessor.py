@@ -2,7 +2,7 @@
 #Harvard-Kyoto words recognized by these delimiters:/|
 
 import os
-from parser.transliteration import harvard_kyoto_to_iast
+from pageparser.transliteration import harvard_kyoto_to_iast
 
 edge_cases = {
     "\n" : "\n",

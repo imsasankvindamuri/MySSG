@@ -24,6 +24,4 @@ like a tree trunk cut in pieces by an axe, the Serpent  lies adhering to Earth
 
 “/vadhena|” = (instrumental) “weapon”
 
-“/kulizenA|” = (instrumental) "axe"
-
-Hi
+“/kulizena|” = (instrumental) “axe”
