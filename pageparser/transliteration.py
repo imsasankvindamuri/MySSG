@@ -37,4 +37,4 @@ def harvard_kyoto_to_iast(hkstring : str) -> str:
     
 
 if __name__ == "__main__":
-    print(harvard_kyoto_to_iast("pitR"))
+    pass

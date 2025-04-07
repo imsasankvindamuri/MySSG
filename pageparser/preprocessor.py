@@ -1,6 +1,6 @@
 #Preprocesses Harvard-Kyoto to IAST before feeding O/P to markdown.markdown()
 #Harvard-Kyoto words recognized by these delimiters:/|
-
+from typing import *
 import os
 from pageparser.transliteration import harvard_kyoto_to_iast
 
@@ -9,6 +9,19 @@ edge_cases = {
     "---\n" : "<hr>"
 
 }
+
+def quickcap(input_lst : List[str]) -> List[str]:
+    #Capitalization function we'll be using for proper nouns in Harvard-Kyoto
+
+    answer_stack = input_lst
+    for index in range(len(answer_stack)):
+        charstr:str = answer_stack[index]
+        if len(charstr) > 1:
+            if charstr[0] == '{' and charstr[len(charstr) - 1] == '}':
+                answer_stack[index] = charstr[1 : len(charstr) - 1].capitalize()
+    
+    return answer_stack
+    
 
 def preprocessor(filepath : str) -> str:
 
@@ -34,12 +47,14 @@ def preprocessor(filepath : str) -> str:
                         try:
                             hk_sanskrit_stack.append(parse_stack.pop())
                         except IndexError:
-                            raise Exception("""Syntax Error: To convert from Harvard-Kyoto to IAST, please enclose designated text in these delimiters: /|. E.g.: /Rbhus|, /vRtra|, etc.""")
+                            raise Exception("Syntax Error: To convert from Harvard-Kyoto to IAST, please enclose designated text in these delimiters: /|. E.g.: /Rbhus|, /vRtra|, etc.")
                     parse_stack.pop()
                     hk_sanskrit_stack.reverse()
                     parse_stack.append(harvard_kyoto_to_iast("".join(hk_sanskrit_stack)))
                 
                 i += 1
+
+            parse_stack = quickcap(parse_stack)
 
             if "".join(parse_stack) in edge_cases:
                 preprocessed_stack.append(edge_cases["".join(parse_stack)])
