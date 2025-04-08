@@ -27,7 +27,7 @@ def render_end_node(inputpath: pathlib.Path = CURRENT_DIRECTORY, outputpath: pat
         raise Exception(f"{inputpath} has contents {set(os.listdir(inputpath))}. It should only have {EXPECTED_ENDNODE_CONTENTS}")
     
     #Defining some filepaths
-    markdown_filepath = inputpath.joinpath("display.md")
+    markdown_filepath = inputpath / ("display.md")
     
     pagemaker.mkpage(markdown_filepath, outputpath)
 
