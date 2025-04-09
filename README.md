@@ -1,6 +1,7 @@
 # MySSG
 
-Heya! You're currently looking at a WIP project. As such, this README.md will be properly updated once development is 70% done.
+Heya! You're currently looking at a WIP project based on this video by 
+Łukasz Langa: [Type Annotations Make Coding Better At Any Size, or: Writing a Static Site Generator in 30 Minutes](https://www.youtube.com/watch?v=jNKFcB8hUu4&t=518s). As such, this README.md will be properly updated once development is 70% done.
 
 So, in lieu of a common README.md, allow me to offer to you all my current ideation:
 
